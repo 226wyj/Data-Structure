@@ -75,3 +75,11 @@ void MiniSpanTree_Kruscal(MGraph G)
     }
 }
 
+int Find(int *parent, int f)
+{
+    while (parent[f] > 0)
+    {
+        f = parent[f];
+    }
+    return f;
+}
