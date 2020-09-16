@@ -1,2 +1,3 @@
-# Data_Structure_Practice
-Implments of basic data_structure
+# Data_Structure
+For most students who majors in Computer Science, Data Structure Course seems to be one of the most difficult courses at the undergraduate study stage. When I was a sophomore, I didn't realize the importance of data structures and I got a very poor grade at that time. I always want to make up for this regret, so I created this repository and decided to learn data structures again. I plan to implement basic and some of the high-level data structures in C++, Java, and Python. Learning the theories is important, but knowing how to use the knowledge to write runnable programs is more important. I hope this repository can give you a little help and I wish you can master data structures. Let's do it.
+
