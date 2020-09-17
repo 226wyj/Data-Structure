@@ -1,3 +1,4 @@
 # Data_Structure
 For most students who majors in Computer Science, Data Structure Course seems to be one of the most difficult courses at the undergraduate study stage. When I was a sophomore, I didn't realize the importance of data structures and I got a very poor grade at that time. I always want to make up for this regret, so I created this repository and decided to learn data structures again. I plan to implement basic and some of the high-level data structures in C++, Java, and Python. Learning the theories is important, but knowing how to use the knowledge to write runnable programs is more important. I hope this repository can give you a little help and I wish you can master data structures. Let's do it.
 
+对于大多数计算机专业的学生来说，数据结构应该是本科四年里最难的一门课之一。可能有很多人和我一样，在大二的时候并没有意识到这门课的重要性，因此学得很不好，期末考试也是飘过。为了在找工作时能够顺利通过面试，我决定自己重新学习一遍数据结构。创建这个仓库的目的是希望自己能够将各种数据结构以代码的形式实现出来，而不是仅仅停留在伪代码和算法理论的层面。关于编程语言的选择，我将分别以C++、Java和Python三种语言实现三个版本的代码，以此能够方便更多人。希望这些代码能够给正在学习数据结构的你有一些帮助，加油。
