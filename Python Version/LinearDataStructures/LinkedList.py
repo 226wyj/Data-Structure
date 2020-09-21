@@ -13,7 +13,7 @@ class Node:
         self.next = None
 
 class LinkedList:
-    """链表
+    """动态链表
 
     Attributes:
         head: 头节点，不存储数据
@@ -39,18 +39,19 @@ class LinkedList:
         pre = self.head
         while pre:
             print(pre.data, end=' ')
+            pre = pre.next
         print(']')
 
     def appendData(self, data):
         """向链表末尾追加数据"""
         newNode = Node(data)
-        if self.head is None:
+        if self.head is None: 
             self.head = newNode
         else:
             pre = self.head
             while pre:
                 pre = pre.next
-            pre.next = newNode
+            pre = newNode
     
     def deleteData(self, data):
         """删除链表中的某个值，成功返回True，失败返回False"""
@@ -122,3 +123,16 @@ class LinkedList:
     def clearList(self):
         """清空整个链表"""
         self.head = None
+
+if __name__ == "__main__":
+    myList = LinkedList()
+    # 向链表中插入1 ~ 5
+    for i in range(1, 6):
+        myList.appendData(i)
+    myList.appendData(1)
+    print("链表长度为: ", myList.getLength())
+    myList.showList()
+
+    myList.appendData(2)
+    myList.showList()
+
