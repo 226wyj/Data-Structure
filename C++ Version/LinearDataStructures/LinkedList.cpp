@@ -7,19 +7,15 @@ struct Node {
     Node* next;
 };
 
-// 头节点定义
-struct Head {
-    Node* next;
-};
-
 // 链表类
 class LinkedList {
 private:
+    // 头节点
     Node* head;
 
 public:
     LinkedList() {
-        head->next = nullptr;
+        head = nullptr;
     }
 
     Node* getHead() {
@@ -37,15 +33,15 @@ public:
         return length;
     }
 
-    // 在链表末尾追加数据
+    // 在链表末尾追加数据（尾插法）
     void appendData(int data) {
         // 生成新的节点
         Node* newNode = new(Node);
         newNode->data = data;
         newNode->next = nullptr;
 
-        if (head->next == nullptr) {
-            head->next = newNode;
+        if (!head) {
+            head = newNode;
         }
         else {
             Node* currentPointer = head;
@@ -54,6 +50,26 @@ public:
             }
             currentPointer->next = newNode;
         }
+    }
+
+    // 删除链表中值为value的节点，成功返回1，否则返回0
+    int deleteData(int data) {
+        Node* currentPointer = this->head;
+        Node* prePointer = nullptr;
+        int flag = 0;
+        while (currentPointer != nullptr) {
+            if (currentPointer->data == data) {
+                if (currentPointer == this->head)
+                    head = head->next;
+                else if (prePointer)
+                    prePointer->next = currentPointer->next;
+                flag = 1;
+                break;
+            }
+            prePointer = currentPointer;
+            currentPointer = currentPointer->next;
+        }
+        return flag;
     }
 
     // 在链表特定位置中插入数据，index从0开始
@@ -74,13 +90,10 @@ public:
             currentPointer->next = newNode;
             newNode->next = temp;
         }
+        
         return true;
     }
 
-    // 删除链表中某一位置的数据
-    bool deleteData(int index, int data) {
-
-    }
 
     // 获取链表中某一位置的数据，index从0开始
     int getData(int index) {
@@ -121,8 +134,9 @@ int main() {
     }
     myList.showList();
     cout << myList.getLength() << endl;
-    // myList.insertData(-1, 6);
-    // myList.showList();
-    cout << myList.getData(0);
+
+    cout << myList.deleteData(2) << endl;
+    myList.showList();
+    cout << myList.getLength() << endl;
     return 0;
 }
