@@ -10,7 +10,7 @@ struct Node {
 // 链表定义
 class LinkedList {
 private:
-    // 头节点
+    // 头节点，指向链表中的第一个数据节点
     Node* head;
 
 public:
@@ -113,17 +113,44 @@ public:
 
     // 获取链表中某一位置的数据，index从0开始
     int getData(int index) {
-        if (index < 0 || index >= this->getLength()) {
+        int result = 0;
+        if (index < 0 || index > this->getLength() - 1) {
             cout << "Index Out of Range Error!";
             return -1;
         }
         else {
-            Node* currentPointer = this->head;
-            for (int i = 0; i <= index; i++) {
-                currentPointer = currentPointer->next;
+            if (index == 0)
+                result = head->data;
+            else {
+                Node* currentPointer = this->head;
+                for (int i = 0; i < index; i++) {
+                    currentPointer = currentPointer->next;
+                }
+                result = currentPointer->data;
             }
-            return currentPointer->data;
         }
+        return result;
+    }
+
+    // 反转链表
+    Node* reverseList() {
+        Node* newHead = nullptr;
+        for (int i = 0; i < this->getLength(); i++) {
+            // 取原始链表中的数据，构造新节点
+            Node* newNode = new(Node);
+            newNode->data = this->getData(i);
+            newNode->next = nullptr;
+
+            // 头插法构造新链表，从而实现原始列表的反转
+            if (!newHead) {
+                newHead = newNode;
+            }
+            else {
+                newNode->next = newHead;  
+                newHead = newNode;
+            }
+        }
+        return newHead;
     }
 
     // 清空链表
@@ -155,8 +182,19 @@ int main() {
     cout << "删除元素0之后的链表:" << endl;
     myList.showList();
     cout << "链表长度:  " << myList.getLength() << endl;
-
+    cout << "在0号位置插入元素100:" << endl;
     myList.insertData(0, 100);
     myList.showList();
+    cout << "0号元素:  " << myList.getData(0) << endl;
+    cout << "1号元素:  " << myList.getData(1) << endl;
+    
+    cout << "反转链表:" << endl;
+    Node* reversedList = myList.reverseList();
+    Node* head = reversedList;
+    while (head != nullptr) {
+        cout << head->data << " ";
+        head = head->next;
+    }
+    cout << endl;
     return 0;
 }
