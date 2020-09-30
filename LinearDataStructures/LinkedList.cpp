@@ -175,20 +175,20 @@ int main() {
     for (int i = 0; i < 5; i++) {
         myList.appendData(i);
     }
-    cout << "LinkList:" << endl;
+    cout << "LinkedList:" << endl;
     myList.showList();
-    cout << "Length of the LinkList:  " << myList.getLength() << endl;
+    cout << "Length of the LinkedList:  " << myList.getLength() << endl;
     myList.deleteData(0);
     cout << "Delete Data 0:" << endl;
     myList.showList();
-    cout << "Length of the LinkList:  " << myList.getLength() << endl;
+    cout << "Length of the LinkedList:  " << myList.getLength() << endl;
     cout << "Insert data 100 at 0 index:" << endl;
     myList.insertData(0, 100);
     myList.showList();
     cout << "0th Element:  " << myList.getData(0) << endl;
     cout << "1st Element:  " << myList.getData(1) << endl;
     
-    cout << "Reverse the LinkList:" << endl;
+    cout << "Reverse the LinkedList:" << endl;
     Node* reversedList = myList.reverseList();
     Node* head = reversedList;
     while (head != nullptr) {
