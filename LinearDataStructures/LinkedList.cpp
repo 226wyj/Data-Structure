@@ -175,20 +175,20 @@ int main() {
     for (int i = 0; i < 5; i++) {
         myList.appendData(i);
     }
-    cout << "链表:" << endl;
+    cout << "LinkList:" << endl;
     myList.showList();
-    cout << "链表长度:  " << myList.getLength() << endl;
+    cout << "Length of the LinkList:  " << myList.getLength() << endl;
     myList.deleteData(0);
-    cout << "删除元素0之后的链表:" << endl;
+    cout << "Delete Data 0:" << endl;
     myList.showList();
-    cout << "链表长度:  " << myList.getLength() << endl;
-    cout << "在0号位置插入元素100:" << endl;
+    cout << "Length of the LinkList:  " << myList.getLength() << endl;
+    cout << "Insert data 100 at 0 index:" << endl;
     myList.insertData(0, 100);
     myList.showList();
-    cout << "0号元素:  " << myList.getData(0) << endl;
-    cout << "1号元素:  " << myList.getData(1) << endl;
+    cout << "0th Element:  " << myList.getData(0) << endl;
+    cout << "1st Element:  " << myList.getData(1) << endl;
     
-    cout << "反转链表:" << endl;
+    cout << "Reverse the LinkList:" << endl;
     Node* reversedList = myList.reverseList();
     Node* head = reversedList;
     while (head != nullptr) {
