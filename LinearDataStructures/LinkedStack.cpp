@@ -42,11 +42,11 @@ public:
 			head = newNode;
 		}
 		else {
-			newNode->next = head->next;
+			newNode->next = head;
 			head = newNode;
 		}
 		setLength(getLength() + 1);
-	}	
+	}
 
 	// 出栈
 	int pop() {
@@ -78,6 +78,12 @@ int main() {
 	LinkedStack myStack = LinkedStack();
 	for (int i = 0; i < 5; i++)
 		myStack.push(i);
+	cout << "Stack:" << endl;
 	myStack.showStack();
+	cout << "Stack Length:\t" << myStack.getLength() << endl;
+	cout << "Pop:\t" << myStack.pop() << endl;
+	cout << "Stack:" << endl;
+	myStack.showStack();
+	cout << "Stack Length:\t" << myStack.getLength() << endl;
 	return 0;
 }
