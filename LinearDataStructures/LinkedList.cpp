@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-// 数据节点定义
+// 数据结点定义
 struct Node {
     int data;
     Node* next;
@@ -10,7 +10,7 @@ struct Node {
 // 链表定义
 class LinkedList {
 private:
-    // 头节点，指向链表中的第一个数据节点
+    // 头结点，指向链表中的第一个数据结点
     Node* head;
 
 public:
@@ -35,7 +35,7 @@ public:
 
     // 在链表末尾追加数据（尾插法）
     void appendData(int data) {
-        // 生成新的节点
+        // 生成新的结点
         Node* newNode = new(Node);
         newNode->data = data;
         newNode->next = nullptr;
@@ -52,7 +52,7 @@ public:
         }
     }
 
-    // 删除链表中值为value的节点，成功返回1，否则返回0
+    // 删除链表中值为value的结点，成功返回1，否则返回0
     int deleteData(int data) {
         Node* currentPointer = this->head;
         Node* prePointer = nullptr;
@@ -80,14 +80,14 @@ public:
         return flag;
     }
 
-    // 在链表特定位置中插入数据，index从0开始，插入的数据作为链表中的第index个节点
+    // 在链表特定位置中插入数据，index从0开始，插入的数据作为链表中的第index个结点
     bool insertData(int index, int data) {
         if (index < 0 || index > this->getLength()) {
             cout << "Index Out of Range Error!" << endl;
             return false;
         }
         else {
-            // 生成新的数据节点
+            // 生成新的数据结点
             Node* newNode = new(Node);
             newNode->data = data;
             newNode->next = nullptr;
@@ -136,7 +136,7 @@ public:
     Node* reverseList() {
         Node* newHead = nullptr;
         for (int i = 0; i < this->getLength(); i++) {
-            // 取原始链表中的数据，构造新节点
+            // 取原始链表中的数据，构造新结点
             Node* newNode = new(Node);
             newNode->data = this->getData(i);
             newNode->next = nullptr;
