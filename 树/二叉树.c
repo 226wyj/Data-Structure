@@ -59,7 +59,7 @@ void CreateBiTree(BiTree *T)
     scanf("%c", &ch);
     if(ch == '#')
     {
-        *T == NULL;
+        *T = NULL;
     }    
     else
     {
