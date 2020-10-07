@@ -15,7 +15,7 @@ struct Node {
     }
 };
 
- // 前序遍历
+// 前序遍历
 void preOrderTraverse(Node* root) {
     if (root != nullptr) {
         cout << root->data << " ";
@@ -60,17 +60,48 @@ Node* insertData(Node* root, int data) {
     return root;
 }
 
+// 获取树中的最大值
+int getMax(Node* root) {
+    if (root == nullptr) {
+        cout << "Empty Tree!" << endl;
+        return -1;
+    }
+    else {
+        Node* parent = nullptr;
+        while (root) {
+            parent = root;
+            root = root->rchild;
+        }
+        return parent->data;
+    }
+}
+
+// 获取树中的最小值
+int getMin(Node* root) {
+    if (root == nullptr) {
+        cout << "Empty Tree!" << endl;
+        return -1;
+    }
+    else {
+        Node* parent = nullptr;
+        while (root) {
+            parent = root;
+            root = root->lchild;
+        }
+        return parent->data;
+    }
+}
 
 int main() {
     // 测试数据
-    int a[11] = {50, 30, 10, 0, 20, 40, 70, 90, 100, 60, 80};
+    int a[11] = { 50, 30, 10, 0, 20, 40, 70, 90, 100, 60, 80 };
 
     // 根节点
     Node* root = nullptr;
 
     for (int i = 0; i < 11; i++)
         root = insertData(root, a[i]);
-    
+
     // 前序遍历
     cout << "Pre Order Traverse: " << endl;
     preOrderTraverse(root);
@@ -86,5 +117,13 @@ int main() {
     postOrderTraverse(root);
     cout << endl << endl;
 
+    // 最大值
+    cout << "Max number:" << endl;
+    cout << getMax(root) << endl << endl;
+
+    // 最小值
+    cout << "Min number:" << endl;
+    cout << getMin(root) << endl << endl;
+    
     return 0;
 }
