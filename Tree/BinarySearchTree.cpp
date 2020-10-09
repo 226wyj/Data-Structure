@@ -2,7 +2,7 @@
 #include <climits>
 using namespace std;
 
-// 结点
+// 结点定义
 struct Node {
     int data;
     Node* lchild;
@@ -133,6 +133,25 @@ Node* deleteNode(Node* root, int data) {
     return root;
 }
 
+// 查找某一结点是否在树中
+void findNode(Node* root, int data) {
+    if (root == nullptr) {
+        cout << "Not find!" << endl;
+        return;
+    }
+    else {
+        if (data < root->data) {
+            findNode(root->lchild, data);
+        }
+        else if (data > root->data) {
+            findNode(root->rchild, data);
+        }
+        else if (data = root->data) {
+            cout << "Find Node!" << endl;
+        }
+    }
+}
+
 int main() {
     // 测试数据
     int a[11] = { 50, 30, 10, 0, 20, 40, 70, 90, 100, 60, 80 };
@@ -144,34 +163,44 @@ int main() {
         root = insertData(root, a[i]);
 
     // 前序遍历
-    cout << "Pre Order Traverse: " << endl;
+    cout << '\n' << "Pre Order Traverse: " << endl;
     preOrderTraverse(root);
-    cout << endl << endl;
+    cout << '\n' << endl;
 
     // 中序遍历
     cout << "In Order Traverse: " << endl;
     inOrderTraverse(root);
-    cout << endl << endl;
+    cout << '\n' << endl;
 
     // 后序遍历
     cout << "Post Order Traverse: " << endl;
     postOrderTraverse(root);
-    cout << endl << endl;
+    cout << '\n' << endl;
 
     // 最大值
     cout << "Max number:" << endl;
-    cout << getMax(root)->data << endl << endl;
+    cout << getMax(root)->data << '\n' << endl;
 
     // 最小值
     cout << "Min number:" << endl;
-    cout << getMin(root)->data << endl << endl;
+    cout << getMin(root)->data << '\n' << endl;
+
+    // 查找70是否在树中
+    cout << "Find 70:" << endl;
+    findNode(root, 70);
+    cout << '\n' << endl;
     
     // 删除70，则根据我们的规则，前序遍历的结果应该为
     // 50 30 10 0 20 40 80 60 90 100
-    cout << "Delete 70: " << endl;
+    cout << "Delete 70 and do pre-order traverse again: " << endl;
     root = deleteNode(root, 70);
     preOrderTraverse(root);
-    cout << endl << endl;
+    cout << '\n' << endl;
+
+    // 再次查找70是否在树中
+    cout << "Find 70 again after we remove it from the BST:" << endl;
+    findNode(root, 70);
+    cout << '\n' << endl;
 
     return 0;
 }
