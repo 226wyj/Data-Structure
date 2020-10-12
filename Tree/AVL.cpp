@@ -119,9 +119,27 @@ public:
         return isBalanced(root);
     }
 
-    // 添加结点
-    Node* addNode(int key) {
-
+    // 插入结点，返回插入新节点之后AVL的树根
+    Node* insertNode(Node* node, int key) {
+        Node* newNode = new(Node);
+        newNode->key = key;
+        if (node == nullptr) {
+            node = newNode;
+            return node;
+        }
+        else {
+            if (key < node->key) {
+                root->lchild = insertNode(node->lchild, key);
+            }
+            else if (key > node->key) {
+                node->rchild = insertNode(node->rchild, key);
+            }
+            // 更新height
+            node.height = max(getHeight(node->lchild), getHeight(node->rchild)) + 1;
+            
+            // 计算平衡因子
+            
+        }
     }
 
 };
