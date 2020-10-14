@@ -138,8 +138,24 @@ public:
             node.height = max(getHeight(node->lchild), getHeight(node->rchild)) + 1;
             
             // 计算平衡因子
-            
+            int balanceFactor = getBalanceFactor(node);
+            // LL 右旋
+            if (balanceFactor > 1 && getBalanceFactor(node->lchild) > 0) 
+                return rightRotate(node);
+            // RR 左旋
+            if (balanceFactor < -1 && getBalanceFactor(node->rchild) < 0)
+                return leftRotate(node);
+            // LR
+            if (balanceFactor > 1 && getBalanceFactor(node->lchild) < 0)
+                return LR(node);
+            // RL
+            if (balanceFactor < -1 && getBalanceFactor(node->rchild) > 0)
+                return RL(node);
         }
+        return node;
     }
+
+    // 删除结点
+    
 
 };
