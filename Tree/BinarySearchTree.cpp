@@ -152,6 +152,19 @@ void findNode(Node* root, int data) {
     }
 }
 
+// 判断一棵树是否是BST
+bool isBST(Node* root) {
+    if (root == nullptr) {
+        return true;
+    }
+    if ((root->lchild) && (getMax(root->lchild)->data > root->data))
+        return false;
+    if ((root->rchild) && (getMax(root->rchild)->data < root->data))
+        return false;
+    return isBST(root->lchild) && isBST(root->rchild);
+}
+
+
 int main() {
     // 测试数据
     int a[11] = { 50, 30, 10, 0, 20, 40, 70, 90, 100, 60, 80 };
@@ -201,6 +214,9 @@ int main() {
     cout << "Find 70 again after we remove it from the BST:" << endl;
     findNode(root, 70);
     cout << '\n' << endl;
+
+    cout << isBST(root) << endl;
+
 
     return 0;
 }
