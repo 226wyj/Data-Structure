@@ -153,16 +153,24 @@ void findNode(Node* root, int data) {
 }
 
 // 判断一棵树是否是BST
+bool isBSTUtil(Node* root, int min, int max) {
+    if (root == nullptr) {
+        return true;
+    }
+    if (root->data <= min || root->data >= max) {
+        return false;
+    }
+    return isBSTUtil(root->lchild, min, root->data) &&
+           isBSTUtil(root->rchild, root->data, max);
+}
+
 bool isBST(Node* root) {
     if (root == nullptr) {
         return true;
     }
-    if ((root->lchild) && (getMax(root->lchild)->data > root->data))
-        return false;
-    if ((root->rchild) && (getMax(root->rchild)->data < root->data))
-        return false;
-    return isBST(root->lchild) && isBST(root->rchild);
+    return isBSTUtil(root, INT_MIN, INT_MAX);
 }
+
 
 
 int main() {
@@ -215,8 +223,9 @@ int main() {
     findNode(root, 70);
     cout << '\n' << endl;
 
+    // 判断此时是不是一颗BST
+    cout << "Whether we have a BST ? (0 / 1)" << endl;
     cout << isBST(root) << endl;
-
 
     return 0;
 }
