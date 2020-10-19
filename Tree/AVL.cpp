@@ -119,6 +119,38 @@ public:
         return isBalanced(root);
     }
 
+    // 找子树中的最大结点
+    Node* getMax(Node* node) {
+        if (node == nullptr) {
+            cout << "Empty Tree" << endl;
+            exit(0);
+        }
+        else {
+            Node* parent = nullptr;
+            while (node) {
+                parent = node;
+                node = node->rchild;
+            }
+            return parent;
+        }
+    }
+
+    // 找子树中的最小结点
+    Node* getMin(Node* node) {
+        if (node = nullptr) {
+            cout << "Empty Tree" << endl;
+            exit(0);
+        }
+        else {
+            Node* parent = nullptr;
+            while (node) {
+                parent = node;
+                node = node->lchild;
+            }
+            return parent;
+        }
+    }
+
     // 插入结点，返回插入新节点之后AVL的树根
     Node* insertNode(Node* node, int key) {
         Node* newNode = new(Node);
@@ -152,12 +184,57 @@ public:
             if (balanceFactor < -1 && getBalanceFactor(node->rchild) > 0)
                 return RL(node);
         }
+        size ++;
         return node;
     }
 
     // 删除结点
-    Node* deleteNode(int key) {
-        
+    Node* deleteNode(Node* node, int key) {
+        if (node == nullptr) {
+            cout << "Empty Tree" << endl;
+            exit(0);
+        }
+        else {
+            Node* toBeRotate = nullptr;
+
+            // key < node->key，则进入左子树
+            if (node->key > key) {
+                node->lchild = deleteNode(node->rchild, key);
+                toBeRotate = node;
+            }
+            // key > node->key，则进入右子树
+            else if (node->key < key) {
+                node->rchild = deleteNode(node->rchild, key);
+                toBeRotate = node;
+            }
+            // 找到目标结点，判断该结点的子树数量
+            else {
+                // 既有左子树也有右子树
+                if (node->lchild && node->rchild) {
+                    // 找到右子树中的最小值
+                    Node* temp = getMin(node->rchild);
+                    node->key = temp->key;
+                    // 在右子树中删除该最小值
+                    node->rchild = deleteNode(node->rchild, temp->key);
+                }
+                else {
+                    Node* temp = node;
+                    // 只有右子树
+                    if (!node->lchild) {
+                        node = node->rchild;
+                    }
+                    // 只有左子树
+                    else if (!node->rchild) {
+                        node = node->lchild;
+                    }
+                    delete temp;
+                }
+            }
+        }
     }
 
 };
+
+int main() {
+    return 0;
+}
