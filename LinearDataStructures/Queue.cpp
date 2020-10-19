@@ -43,7 +43,7 @@ public:
     }
 
     // 入队列
-    void inQueue(int data) {
+    void enQueue(int data) {
         if (this->getLength() < this->getSize()) {
             for (int i = getLength(); i > 0; i--) {
                 queue[i] = queue[i-1];
@@ -58,7 +58,7 @@ public:
     }
 
     // 出队列
-    int outQueue() {
+    int deQueue() {
         if (this->getLength()) {
             int result = queue[getLength()-1];
             setLength(getLength() - 1);
@@ -85,17 +85,17 @@ int main() {
     
     // 入队列
     for (int i = 0; i < 5; i++) {
-        myQueue.inQueue(i);
+        myQueue.enQueue(i);
     }
     
     myQueue.showQueue();
 
     // 出队列
-    cout << "Out queue: " << myQueue.outQueue() << endl;
+    cout << "Out queue: " << myQueue.deQueue() << endl;
     myQueue.showQueue();
 
     // 将5入队列
-    myQueue.inQueue(5);
+    myQueue.enQueue(5);
     myQueue.showQueue();
 
     return 0;

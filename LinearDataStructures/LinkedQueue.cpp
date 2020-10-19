@@ -37,7 +37,7 @@ public:
     }
 
     // 入队列（先进先出，即头插法建立链表）
-    void inQueue(int data) {
+    void enQueue(int data) {
         Node* newNode = new(Node);
         newNode->data = data;
 
@@ -51,7 +51,7 @@ public:
     }
 
     // 出队列（依次从后向前输出链表中的值）
-    int outQueue() {
+    int deQueue() {
         if (getLength() == 0) {
             cout << "Error! Empty Queue!" << endl;
             exit(0);
@@ -88,18 +88,18 @@ int main() {
 
     // 入队列
     for (int i = 0; i < 5; i++) {
-        myQueue.inQueue(i);
+        myQueue.enQueue(i);
     }
     
     myQueue.showQueue();
 
     // 出队列
-    cout << "Out queue: " << myQueue.outQueue() << endl;
+    cout << "Out queue: " << myQueue.deQueue() << endl;
     myQueue.showQueue();
 
     // 将5入队列
     cout << "Insert 5 into the queue:" << endl;
-    myQueue.inQueue(5);
+    myQueue.enQueue(5);
     myQueue.showQueue();
 
     return 0;
