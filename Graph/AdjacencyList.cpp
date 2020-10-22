@@ -70,7 +70,17 @@ public:
 
     // 输出邻接表的内容
     void showGraph() {
-
+        for (auto i : array) {
+            cout << i->vertex;
+            if (i->next) {
+                cout << "\t=>\t";
+                ListNode* current = i->next;
+                while (current) {
+                    cout << current->vertex << " => ";
+                }
+                cout << endl;
+            }
+        }
     }
 };
 
