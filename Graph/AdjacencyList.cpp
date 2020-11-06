@@ -82,6 +82,31 @@ public:
         }
     }
 
+    // 获取所有结点
+    vector<int> getAllVertex() {
+        vector<int> vertexes;
+        for (auto i : array) {
+            vertexes.push_back(i->vertex);
+        }
+        return vertexes;
+    }
+
+    // 获取所有边
+    vector<pair<int, int>> getAllEdge() {
+        vector<pair<int, int>> edges;
+        for (auto i : array) {
+            ListNode* current = i->head;
+            int source, target;
+            while (current) {
+                source = i->vertex;
+                target = current->vertex;
+                edges.push_back(make_pair(source, target));
+                current = current->next;
+            }
+        }
+        return edges;
+    }
+
     // 输出邻接表的内容
     void showGraph() {
         for (auto i : array) {
@@ -127,6 +152,20 @@ int main() {
 
     // 展示结果
     demo.showGraph();
-    
+
+    // 获取所有顶点
+    cout << "Vertexes:" << endl;
+    for (auto v : demo.getAllVertex()) {
+        cout << v << ' ';
+    }
+    cout << endl;
+
+    // 获取所有边
+    cout << "Edges:" << endl;
+    for (auto e : demo.getAllEdge()) {
+        cout << "(" << e.first << "," << e.second << ")\t";
+    }
+    cout << endl;
+
     return 0;
 }
