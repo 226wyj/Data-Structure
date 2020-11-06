@@ -3,17 +3,6 @@
 #include <climits>
 using namespace std;
 
-// 数组结点
-struct ArrayNode {
-    int vertex;
-    ListNode* next;
-    
-    ArrayNode() {
-        vertex = INT_MAX;
-        next = nullptr;
-    }
-};
-
 // 链表结点
 struct ListNode {
     int vertex;
@@ -25,12 +14,37 @@ struct ListNode {
     }
 };
 
+// 数组结点
+struct ArrayNode {
+    int vertex;
+    ListNode* head;
+    
+    ArrayNode() {
+        vertex = INT_MAX;
+        head = nullptr;
+    }
+};
+
 // 邻接表
 class AdjacencyList {
 private:
     vector<ArrayNode*> array;
 
 public:
+
+    // 析构函数
+    ~AdjacencyList() {
+        for (auto i : array) {
+            if (i->head) {
+                ListNode* current = i->head;
+                while (current) {
+                    ListNode* temp = current;
+                    current = current->next;
+                    delete temp;
+                }
+            }
+        }
+    }
 
     // 插入顶点
     void addVertex(int v) {
@@ -55,14 +69,14 @@ public:
                 newNode->vertex = v;
 
                 // 若以u为头结点的链表为空，则直接插入
-                if (!i->next) {
-                    i->next = newNode;
+                if (!i->head) {
+                    i->head = newNode;
                 }
                 // 以u为头结点的链表非空，考虑到复杂度问题，采用头插法
                 // 这样可以省去每一次的遍历链表的操作
                 else {
-                    newNode->next = i->next;
-                    i->next = newNode;
+                    newNode->next = i->head;
+                    i->head = newNode;
                 }
             }
         }
@@ -72,11 +86,14 @@ public:
     void showGraph() {
         for (auto i : array) {
             cout << i->vertex;
-            if (i->next) {
+            if (i->head) {
                 cout << "\t=>\t";
-                ListNode* current = i->next;
+                ListNode* current = i->head;
                 while (current) {
-                    cout << current->vertex << " => ";
+                    cout << current->vertex;
+                    if (current->next)
+                        cout << " -> ";
+                    current = current->next;
                 }
                 cout << endl;
             }
@@ -84,19 +101,32 @@ public:
     }
 };
 
-
 int main() {
     AdjacencyList demo = AdjacencyList();
 
-    // 输入顶点，当值为10086时候结束
+    // 输入顶点
     int vertex;
-    while ((cin >> vertex) != 10086) {
+    char choice;
+    do {
+        cout << "Please input vertex:" << endl;
+        cin >> vertex;
         demo.addVertex(vertex);
-    }
+        cout << "Continue? (y/n)" << endl;
+        cin >> choice;
+    } while (choice != 'n');
 
     // 输入边
     int source, target;
-    
+    do {
+        cout << "Please input the source vertex and target vertex of the edge:" << endl;
+        cin >> source >> target;
+        demo.addArc(source, target);
+        cout << "Continue? (y/n)" << endl;
+        cin >> choice;
+    } while (choice != 'n');
+
+    // 展示结果
+    demo.showGraph();
     
     return 0;
 }
