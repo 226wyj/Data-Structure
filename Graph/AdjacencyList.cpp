@@ -95,8 +95,8 @@ public:
                         cout << " -> ";
                     current = current->next;
                 }
-                cout << endl;
             }
+            cout << endl;
         }
     }
 };
