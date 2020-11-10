@@ -157,7 +157,9 @@ public:
     void clearList() {
         Node* current = this->head;
         while (current) {
-            
+            auto temp = current;
+            current = current->next;
+            delete current;
         }
         this->head = nullptr;
     }
@@ -186,7 +188,7 @@ int main() {
     cout << "Delete Data 0:" << endl;
     myList.showList();
     cout << "Length of the LinkedList:  " << myList.getLength() << endl;
-    cout << "Insert data 100 at 0 index:" << endl;
+    cout << "Insert data 100 at index 0:" << endl;
     myList.insertData(0, 100);
     myList.showList();
     cout << "0th Element:  " << myList.getData(0) << endl;
@@ -200,5 +202,6 @@ int main() {
         head = head->next;
     }
     cout << endl;
+    myList.clearList();
     return 0;
 }
