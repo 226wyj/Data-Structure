@@ -28,8 +28,9 @@ struct ArrayNode {
 // 邻接表
 class AdjacencyList {
 private:
-    vector<ArrayNode*> array;
-
+    vector<ArrayNode*> array;       // 邻接表数组
+    vector<int> vertexes;           // 顶点集
+    vector<pair<int, int>> edges;   // 边集
 public:
 
     // 析构函数
@@ -57,6 +58,7 @@ public:
         ArrayNode* newNode = new (ArrayNode);
         newNode->vertex = v;
         array.push_back(newNode);
+        vertexes.push_back(v);
     }
 
     // 插入边(u, v)
@@ -80,30 +82,16 @@ public:
                 }
             }
         }
+        edges.push_back(make_pair(u, v));
     }
 
     // 获取所有结点
-    vector<int> getAllVertex() {
-        vector<int> vertexes;
-        for (auto i : array) {
-            vertexes.push_back(i->vertex);
-        }
+    vector<int> getVertexes() {
         return vertexes;
     }
 
     // 获取所有边
-    vector<pair<int, int>> getAllEdge() {
-        vector<pair<int, int>> edges;
-        for (auto i : array) {
-            ListNode* current = i->head;
-            int source, target;
-            while (current) {
-                source = i->vertex;
-                target = current->vertex;
-                edges.push_back(make_pair(source, target));
-                current = current->next;
-            }
-        }
+    vector<pair<int, int>> getEdges() {
         return edges;
     }
 
@@ -155,14 +143,14 @@ int main() {
 
     // 获取所有顶点
     cout << "Vertexes:" << endl;
-    for (auto v : demo.getAllVertex()) {
+    for (auto v : demo.getVertexes()) {
         cout << v << ' ';
     }
     cout << endl;
 
     // 获取所有边
     cout << "Edges:" << endl;
-    for (auto e : demo.getAllEdge()) {
+    for (auto e : demo.getEdges()) {
         cout << "(" << e.first << "," << e.second << ")\t";
     }
     cout << endl;
