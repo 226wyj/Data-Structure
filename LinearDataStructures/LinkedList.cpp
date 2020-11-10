@@ -155,6 +155,10 @@ public:
 
     // 清空链表
     void clearList() {
+        Node* current = this->head;
+        while (current) {
+            
+        }
         this->head = nullptr;
     }
 
