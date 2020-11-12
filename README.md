@@ -5,6 +5,14 @@ For most students who majors in Computer Science, Data Structure Course seems to
 
 ***
 
+##### 2020/11/12
+
+Finish:
+
+* AdjacencyMatrix of Graph
+
+
+
 ##### 2020/11/10
 
 Finish:
