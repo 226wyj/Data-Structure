@@ -46,7 +46,7 @@ public:
     }
 
     // 构造邻接矩阵
-    int ** createMatrix() {
+    int **createMatrix() {
         // 初始化矩阵
         int **matrix = new int*[vertexNum]();
         // 根据边的关系填充矩阵
