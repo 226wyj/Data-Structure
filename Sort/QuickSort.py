@@ -1,7 +1,3 @@
-class QuickSort:
-    def partition
-
-
 def partition(arr,low,high): 
     i = ( low-1 )         # 最小元素索引
     pivot = arr[high]     
