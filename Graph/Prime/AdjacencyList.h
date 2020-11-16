@@ -1,6 +1,5 @@
 #ifndef ADJACENCYLIST_H
 #define ADJACENCYLIST_H
-#include <iostream>
 #include <vector>
 
 // 链表结点
@@ -23,8 +22,12 @@ class AdjacencyList {
 private:
     std::vector<int> vertexes;                  // 顶点集
     std::vector<std::pair<int, int>> edges;     // 边集
-    std::vector<ArrayNode*> array;              // 邻接表
+    std::vector<ArrayNode*> array;              // 邻接表数组
+
 public:
+    // 构造函数
+    AdjacencyList() {};
+
     // 析构函数
     ~AdjacencyList();
 

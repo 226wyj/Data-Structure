@@ -1,8 +1,11 @@
 #include "AdjacencyList.h"
 #include <climits>
+#include <iostream>
 using std::vector;
 using std::pair;
 using std::cout;
+using std::endl;
+using std::make_pair;
 
 // 链表结点构造函数
 ListNode::ListNode() {
@@ -18,20 +21,6 @@ ArrayNode::ArrayNode() {
 
 /* 邻接表 */
 
-// 析构函数
-AdjacencyList::~AdjacencyList() {
-    for (auto i : this->getArray()) {
-        if (i->head) {
-            ListNode* current = i->head;
-            while (current) {
-                ListNode* temp = current;
-                current = current->next;
-                delete temp;
-            }
-        }
-    }
-}
-
 // 获取邻接表数组
 vector<ArrayNode*> AdjacencyList::getArray() {
     return this->array;
@@ -45,6 +34,20 @@ vector<int> AdjacencyList::getVertexes() {
 // 获取边集
 vector<pair<int, int>> AdjacencyList::getEdges() {
     return this->edges;
+}
+
+// 析构函数
+AdjacencyList::~AdjacencyList() {
+    for (auto i : this->getArray()) {
+        if (i->head) {
+            ListNode* current = i->head;
+            while (current) {
+                ListNode* temp = current;
+                current = current->next;
+                delete temp;
+            }
+        }
+    }
 }
 
 // 插入结点
@@ -82,7 +85,7 @@ void AdjacencyList::addEdge(int u, int v) {
             }
         }
     }
-    this->getEdges.push_back(make_pair(u, v));
+    this->getEdges().push_back(make_pair(u, v));
 }
 
 // 输出邻接表内容
@@ -99,6 +102,6 @@ void AdjacencyList::showGraph() {
                 current = current->next;
             }
         }
-        cout << std::endl;
+        cout << endl;
     }
 }
