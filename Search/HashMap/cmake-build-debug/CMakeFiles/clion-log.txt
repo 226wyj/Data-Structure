@@ -1,0 +1,4 @@
+"D:\Develop\CLion\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\Files\Github\Data_Structure\Search\HashMap
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/Files/Github/Data_Structure/Search/HashMap/cmake-build-debug
