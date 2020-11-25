@@ -2,6 +2,9 @@
 // Created by wyj on 2020/11/25.
 //
 #include "LinkedList.h"
+#include <iostream>
+using std::cout;
+using std::endl;
 
 Node::Node() {
     key = 0;
@@ -63,11 +66,39 @@ void LinkedList::insertNode(int k, int v) {
 
 Node * LinkedList::deleteNode(int k) {
     Node *current = getHead();
-    Node *tmp = searchNode(k);
-    if (tmp == nullptr) {
+    Node *currentNext = current->next;
+    Node *tmp = nullptr;
+    // 若头结点被删除，则同时还要更新头结点
+    if (current->key == k) {
+        tmp = current;
+        setHead(current->next);
+        delete current;
+        return tmp;
+    }
+    // 其他结点被删除
+    else {
+        while (currentNext != nullptr) {
+            if (currentNext->key == k) {
+                tmp = currentNext;
+                current->next = currentNext->next;
+                delete currentNext;
+                return tmp;
+            }
+            current = currentNext;
+            currentNext = current->next;
+        }
+        // key不存在，返回nullptr
         return nullptr;
     }
-    else {
-        
+}
+
+void LinkedList::showList() {
+    Node *current = getHead();
+    while (current != nullptr) {
+        cout << current->key << "|" << current->value;
+        if (current->next != nullptr) {
+            cout << " -> ";
+        }
     }
+    cout << endl;
 }

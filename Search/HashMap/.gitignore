@@ -95,3 +95,6 @@ dkms.conf
 *.iml
 out
 gen
+cmake-build-debug/CMakeFiles/3.17.3/CompilerIdC/tmp/
+cmake-build-debug/CMakeFiles/3.17.3/CompilerIdCXX/tmp/
+cmake-build-debug/CMakeFiles/CMakeTmp/

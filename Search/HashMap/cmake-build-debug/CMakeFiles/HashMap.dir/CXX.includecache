@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/Files/Github/Data_Structure/Search/HashMap/LinkedList.cpp
+LinkedList.h
+D:/Files/Github/Data_Structure/Search/HashMap/LinkedList.h
+iostream
+-
+
+D:/Files/Github/Data_Structure/Search/HashMap/LinkedList.h
+
+D:/Files/Github/Data_Structure/Search/HashMap/main.cpp
+iostream
+-
+
