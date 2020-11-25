@@ -142,6 +142,33 @@ HashMap/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\HashMap.dir\build.make CMakeFiles/HashMap.dir/build
 .PHONY : HashMap/fast
 
+HashMap.obj: HashMap.cpp.obj
+
+.PHONY : HashMap.obj
+
+# target to build an object file
+HashMap.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HashMap.dir\build.make CMakeFiles/HashMap.dir/HashMap.cpp.obj
+.PHONY : HashMap.cpp.obj
+
+HashMap.i: HashMap.cpp.i
+
+.PHONY : HashMap.i
+
+# target to preprocess a source file
+HashMap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HashMap.dir\build.make CMakeFiles/HashMap.dir/HashMap.cpp.i
+.PHONY : HashMap.cpp.i
+
+HashMap.s: HashMap.cpp.s
+
+.PHONY : HashMap.s
+
+# target to generate assembly for a file
+HashMap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HashMap.dir\build.make CMakeFiles/HashMap.dir/HashMap.cpp.s
+.PHONY : HashMap.cpp.s
+
 LinkedList.obj: LinkedList.cpp.obj
 
 .PHONY : LinkedList.obj
@@ -205,6 +232,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... HashMap
+	@echo ... HashMap.obj
+	@echo ... HashMap.i
+	@echo ... HashMap.s
 	@echo ... LinkedList.obj
 	@echo ... LinkedList.i
 	@echo ... LinkedList.s

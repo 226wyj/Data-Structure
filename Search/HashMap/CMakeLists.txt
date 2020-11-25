@@ -3,4 +3,4 @@ project(HashMap)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(HashMap main.cpp LinkedList.h LinkedList.cpp)
+add_executable(HashMap main.cpp LinkedList.h LinkedList.cpp HashMap.cpp HashMap.h)

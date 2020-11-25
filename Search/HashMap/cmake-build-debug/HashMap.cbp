@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/Files/Github/Data_Structure/Search/HashMap/HashMap.cpp">
+			<Option target="HashMap"/>
+		</Unit>
+		<Unit filename="D:/Files/Github/Data_Structure/Search/HashMap/HashMap.h">
+			<Option target="HashMap"/>
+		</Unit>
 		<Unit filename="D:/Files/Github/Data_Structure/Search/HashMap/LinkedList.cpp">
 			<Option target="HashMap"/>
 		</Unit>
