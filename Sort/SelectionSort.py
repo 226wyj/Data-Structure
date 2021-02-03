@@ -4,20 +4,20 @@ class SelectionSort:
     def simpleSelectionSort(self, array):
         for i in range(len(array)):
             # min记录最小值的下标，每一次都选择待排序列中最小的一个元素，将其移动到序列最左边
-            min = i
+            minIndex = i
             for j in range(i + 1, len(array)):
-                if array[min] >= array[j]:
-                    min = j
-            temp = array[min]
-            array[min] = array[i]
-            array[i] = temp
+                if array[minIndex] >= array[j]:
+                    minIndex = j
+            # i不是最小数时，将i和最小数进行交换
+            if i != minIndex:
+                array[i], array[minIndex] = array[minIndex], array[i]
         return array
     
     def showResults(self, array):
         print("----------------------------------------")
-        print("排序前: ")
+        print("Before sorting: ")
         print(array)
-        print("排序后: ")
+        print("After sorting: ")
         print(self.simpleSelectionSort(array))
         print("----------------------------------------")
 
