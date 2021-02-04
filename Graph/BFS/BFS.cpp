@@ -30,11 +30,12 @@ void BFS::traverse(AdjacencyList graph) {
     int start;
     cin >> start;
 
-//    auto it = find(graph.getVertexes().begin(), graph.getVertexes().end(), start);
-//    if (it == graph.getVertexes().end()) {
-//        cout << "The starter of BFS doesn't exist in the graph.";
-//        exit(0);
-//    }
+    auto it = find(allVertex.begin(), allVertex.end(), start);
+//    cout << "*********" << endl << *it << "***********" << endl;
+    if (it == graph.getVertexes().end()) {
+        cout << "The starter of BFS doesn't exist in the graph.";
+        exit(0);
+    }
 
     bfsQueue.push(start);
     visited[start] = "seen";
@@ -44,6 +45,7 @@ void BFS::traverse(AdjacencyList graph) {
         cout << u << '\t';
         bfsQueue.pop();
 
+        // 通过邻接表获取u的所有邻接点，依次访问
         ArrayNode adjLink = graph.getLinkedList(u);
         ListNode* curr = adjLink.head;
         while (curr != nullptr) {
@@ -55,33 +57,4 @@ void BFS::traverse(AdjacencyList graph) {
             curr = curr->next;
         }
     }
-
-//    for (int i = 0; i < graph.getArray().size(); i++) {
-//
-//        int currentVertex = graph.getArray()[i]->vertex;
-//        if (visited[currentVertex] == "seen")
-//            continue;
-//
-//        visited[currentVertex] = "seen";
-//        bfsQueue.push(currentVertex);
-//        // 队列不空
-//        while (!bfsQueue.empty()) {
-//            // 队头元素u出队列，开始访问其所有邻接点
-//            int u = bfsQueue.front();
-//            ArrayNode adjVertexes = graph.getLinkedList(u);
-//            bfsQueue.pop();
-//
-//            auto curr = adjVertexes.head;
-//            while (curr) {
-//                if (visited[curr->vertex] == "unseen") {
-//                    cout << curr->vertex << "\t";
-//                    bfsQueue.push(curr->vertex);
-//                    visited[curr->vertex] = "seen";
-//                }
-//                curr = curr->next;
-//            }
-//        }
-//    }
 }
-
-
