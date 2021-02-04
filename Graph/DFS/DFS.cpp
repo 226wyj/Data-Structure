@@ -26,21 +26,20 @@ void DFS::traverse(AdjacencyList graph) {
     initVertex(allVertex);
 
     // 从start指示的顶点开始遍历
-    cout << "Please input the start vertex of BFS:" << endl;
+    cout << "Please input the start vertex of DFS:" << endl;
     int start;
     cin >> start;
 
     auto it = find(allVertex.begin(), allVertex.end(), start);
-//    cout << "*********" << endl << *it << "***********" << endl;
     if (it == graph.getVertexes().end()) {
-        cout << "The starter of BFS doesn't exist in the graph.";
+        cout << "The starter of DFS doesn't exist in the graph.";
         exit(0);
     }
 
     dfsStack.push(start);
     visited[start] = "seen";
     while (!dfsStack.empty()) {
-        // 队头元素出队列并打印，开始访问其所有邻接点
+        // 栈首元素出栈并打印，开始访问其所有邻接点
         int u = dfsStack.top();
         cout << u << '\t';
         dfsStack.pop();

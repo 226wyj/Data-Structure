@@ -2,8 +2,8 @@
 // Created by wyj on 2021/2/3.
 //
 
-#ifndef BFS_ADJACENCYLIST_H
-#define BFS_ADJACENCYLIST_H
+#ifndef DFS_ADJACENCYLIST_H
+#define DFS_ADJACENCYLIST_H
 
 #include <vector>
 #include <climits>
@@ -65,4 +65,4 @@ public:
     ArrayNode getLinkedList(int v);
 };
 
-#endif //BFS_ADJACENCYLIST_H
+#endif //DFS_ADJACENCYLIST_H

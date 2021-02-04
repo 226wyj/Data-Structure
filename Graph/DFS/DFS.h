@@ -2,8 +2,8 @@
 // Created by wyj on 2021/2/3.
 //
 
-#ifndef BFS_BFS_H
-#define BFS_BFS_H
+#ifndef DFS_DFS_H
+#define DFS_DFS_H
 
 #include "AdjacencyList.h"
 #include <map>
@@ -24,4 +24,4 @@ public:
     void traverse(AdjacencyList graph);
 };
 
-#endif //BFS_BFS_H
+#endif //DFS_DFS_H
