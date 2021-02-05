@@ -7,8 +7,10 @@
 
 #include <vector>
 #include <climits>
+#include <map>
 using std::vector;
 using std::pair;
+using std::map;
 
 // 链表结点
 struct ListNode {
@@ -35,9 +37,10 @@ struct ArrayNode {
 // 邻接表
 class AdjacencyList {
 private:
-     vector<ArrayNode*> array;             // 邻接表数组
-     vector<int> vertexes;                 // 顶点集
-     vector<std::pair<int, int>> edges;    // 边集
+     vector<ArrayNode*> array;              // 邻接表数组
+     vector<int> vertexes;                  // 顶点集
+     vector<pair<int, int>> edges;          // 边集
+     map<pair<int, int>, int> costs;        // 每条边对应的权重
 
 public:
     // 析构函数
@@ -46,8 +49,11 @@ public:
     // 插入顶点
     void addVertex(int v);
 
-    // 插入边(u, v)
+    // 插入边(u, v)，无权重
     void addArc(int u, int v);
+
+    // 插入边(u, v)，有权重
+    void addArc(int u, int v, int cost);
 
     // 获取所有顶点
     vector<int> getVertexes();
@@ -57,6 +63,9 @@ public:
 
     // 获取邻接表数组
     vector<ArrayNode*> getArray();
+
+    // 获取权重表
+    map<pair<int, int>, int> getCosts();
 
     // 输出邻接表内容
     void showGraph();

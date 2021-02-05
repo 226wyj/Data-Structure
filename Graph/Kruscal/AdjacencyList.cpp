@@ -66,6 +66,11 @@ void AdjacencyList::addArc(int u, int v) {
     AdjacencyList::edges.emplace_back(u, v);
 }
 
+void AdjacencyList::addArc(int u, int v, int cost) {
+    addArc(u, v);
+    costs[make_pair(u, v)] = cost;
+}
+
 vector<int> AdjacencyList::getVertexes() {
     return vertexes;
 }
@@ -76,6 +81,10 @@ vector<pair<int, int>> AdjacencyList::getEdges() {
 
 vector<ArrayNode *> AdjacencyList::getArray() {
     return array;
+}
+
+map<pair<int, int>, int> AdjacencyList::getCosts() {
+    return this->costs;
 }
 
 void AdjacencyList::showGraph() {

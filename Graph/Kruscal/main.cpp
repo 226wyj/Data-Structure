@@ -1,7 +1,8 @@
 #include <iostream>
 #include "AdjacencyList.h"
-#include "DFS.h"
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main() {
     AdjacencyList testGraph = AdjacencyList();
@@ -16,12 +17,13 @@ int main() {
         cin >> choice;
     } while (choice != 'n');
 
-    // 输入边
-    int source, target;
+    // 输入边以及对应的权重
+    int source, target, cost;
     do {
-        cout << "Please input the source vertex and target vertex of the edge:" << endl;
-        cin >> source >> target;
-        testGraph.addArc(source, target);
+        cout << "Please input the source vertex, target vertex,"
+                " and the cost of the edge:" << endl;
+        cin >> source >> target >> cost;
+        testGraph.addArc(source, target, cost);
         cout << "Continue? (y/n)" << endl;
         cin >> choice;
     } while (choice != 'n');
@@ -29,23 +31,20 @@ int main() {
     // 展示结果
     testGraph.showGraph();
 
-    // 获取所有顶点
+    // 展示所有顶点
     cout << "Vertexes:" << endl;
     for (auto v : testGraph.getVertexes()) {
         cout << v << ' ';
     }
     cout << endl;
 
-    // 获取所有边
-    cout << "Edges:" << endl;
-    for (auto e : testGraph.getEdges()) {
-        cout << "(" << e.first << "," << e.second << ")\t";
+    // 展示所有边以及对应的权重
+    cout << "Edges and corresponding costs:" << endl;
+    for (auto e : testGraph.getCosts()) {
+        cout << "(" << e.first.first << "," <<
+            e.first.second << "):\t" << e.second << endl;
     }
     cout << endl;
-
-    // DFS测试
-    DFS dfs = DFS();
-    dfs.traverse(testGraph);
 
     return 0;
 }

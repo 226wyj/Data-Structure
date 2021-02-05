@@ -5,6 +5,14 @@ For most students who majors in Computer Science, Data Structure Course seems to
 
 ***
 
+##### 2021/2/5
+
+Finish:
+
+* DFS of Graph
+
+  
+
 ##### 2021/2/3
 
 Finish:
@@ -17,7 +25,7 @@ Finish:
 
 Finish:
 
-* AdjacencyMatrix of Graph
+* Adjacency Matrix of Graph
 
 
 
@@ -25,11 +33,11 @@ Finish:
 
 Finish:
 
-* LinkedList
+* Linked List
 * Queue
 * Stack
 * BST
-* AdjacencyList of Graph
+* Adjacency List of Graph
 * Some sorting algorithms
 
 To be finished:
