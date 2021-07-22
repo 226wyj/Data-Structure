@@ -13,6 +13,7 @@ class Stack:
     
     def pop(self):
         if self.is_empty():
+            print("Stack is empty, nothing to return.")
             return None
         else:
             target = self.stack[-1]
@@ -21,6 +22,7 @@ class Stack:
     
     def peek(self):
         if self.is_empty():
+            print("Stack is empty, nothing to return.")
             return None
         else:
             return self.stack[-1]
@@ -31,7 +33,7 @@ class Stack:
 
 if __name__ == '__main__':
     stack = Stack()
-    print("0~5入栈:")
+    print("0~4入栈:")
     for i in range(0, 5):
         stack.push(i)
     
