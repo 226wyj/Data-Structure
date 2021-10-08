@@ -3,3 +3,4 @@
 *.gch
 .idea/
 .vscode/
+.DS_Store
