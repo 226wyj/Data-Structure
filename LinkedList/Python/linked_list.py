@@ -1,7 +1,4 @@
-class Node:
-    def __init__(self, val=0, next=None) -> None:
-        self.val = val
-        self.next = next
+from node import Node
 
 class LinkedList:
     def __init__(self, head=Node(), tail=None, length=0) -> None:
@@ -56,26 +53,3 @@ class LinkedList:
             pos -= 1
         new_node = Node(num, curr.next)
         curr.next = new_node
-
-if __name__ == "__main__":
-    linked_list = LinkedList()
-
-    print("头插法测试: 0~4倒序插入")
-    for i in range(0, 5):
-        linked_list.add_node_at_head(i)
-    linked_list.print_list()
-
-    print("尾插法测试: 5~9正序插入")
-    for i in range(5, 10):
-        linked_list.add_node_at_tail(i)
-    linked_list.print_list()
-
-    print("链表长度: ", linked_list.length)
-
-    print("移除值为0的结点:")
-    result = linked_list.remove_node(0)
-    linked_list.print_list()
-
-    print("在0号位置插入10:")
-    linked_list.insert_node(0, 10)
-    linked_list.print_list()
