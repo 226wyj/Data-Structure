@@ -41,6 +41,21 @@ def bag(weight: List[int], value: List[int], W: int) -> int:
     print(dp)
     return dp[-1][-1]
 
+
+def bag_1_dimension(weight: List[int], value: List[int], W: int) -> int:
+    """ DP解法之二：将二维数组压缩成一维数组 """
+        
+    # dp[i] 表示容量为 i 的背包，最大价值可以为 dp[i]
+    dp = [0 for _ in range(W + 1)]
+    
+    for i in range(len(weight)):
+        j = W
+        while j >= weight[i]:
+            dp[j] = max(dp[j], dp[j - weight[i]] + value[i])
+            j -= 1
+    print(dp)
+    return dp[-1]
+
 if __name__ == "__main__":
     weight = [1, 3, 4]
     value = [15, 20, 20]
@@ -53,3 +68,5 @@ if __name__ == "__main__":
     #   [0, 15, 15, 20, 35]
     # ]
     print(bag(weight, value, W)) # 结果为35
+
+    print(bag_1_dimension(weight, value, W))
