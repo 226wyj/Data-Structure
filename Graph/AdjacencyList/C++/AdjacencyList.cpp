@@ -3,8 +3,11 @@
 #include <climits>
 
 #include "AdjacencyList.h"
-using namespace std;
 
+using std::pair;
+using std::make_pair;
+using std::cout;
+using std::endl;
 
 // 析构函数
 AdjacencyList::~AdjacencyList() {

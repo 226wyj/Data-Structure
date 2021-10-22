@@ -2,9 +2,7 @@
 
 #include "AdjacencyList.h"
 
-using std::cout;
-using std::cin;
-using std::endl;
+using namespace std;
 
 int main() {
     AdjacencyList demo = AdjacencyList();
