@@ -31,6 +31,7 @@ int main() {
     } while (choice != 'n');
 
     // 展示结果
+    cout << endl;
     demo.showGraph();
 
     // 获取所有顶点
