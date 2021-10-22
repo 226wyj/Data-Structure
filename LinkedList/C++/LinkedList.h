@@ -3,7 +3,7 @@
 
 struct Node {
     int data;
-    Node *next;
+    Node* next;
 };
 
 // 链表定义
