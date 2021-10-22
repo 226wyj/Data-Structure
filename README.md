@@ -13,13 +13,14 @@ For most students who majors in Computer Science, Data Structure Course seems to
 
 ### Directory of data structures
 
-|    Name     |                      Implementation                       |
-| :---------: | :-------------------------------------------------------: |
-| Linked List | [C++](./LinkedList/C++)  \| [Python](./LinkedList/Python) |
-|    Queue    |                 [Python](./Queue/Python)                  |
-|    Stack    |                                                           |
-|    Tree     |                                                           |
-|    Graph    |                                                           |
+|           Name           |                      Implementation                       |
+| :----------------------: | :-------------------------------------------------------: |
+|       Linked List        | [C++](./LinkedList/C++)  \| [Python](./LinkedList/Python) |
+|          Queue           |                 [Python](./Queue/Python)                  |
+|          Stack           |                                                           |
+|    Tree - Binary Tree    |                                                           |
+|  Graph - Adjacency List  |             [C++](./Graph/AdjacencyList/C++)              |
+| Graph - Adjacency Matrix |            [C++](./Graph/AdjacencyMatrix/C++)             |
 
 
 
