@@ -22,3 +22,7 @@ if __name__ == "__main__":
     print("Insert number 10 at position 0:")
     linked_list.insert_node(0, 10)
     linked_list.print_list()
+
+    print("reverse the linked list:")
+    linked_list.reverse()
+    linked_list.print_list()

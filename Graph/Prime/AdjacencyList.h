@@ -37,7 +37,7 @@ class AdjacencyList {
 private:
      vector<ArrayNode*> array;             // 邻接表数组
      vector<int> vertexes;                 // 顶点集
-     vector<std::pair<int, int>> edges;    // 边集
+     vector<std::pair<int, int> > edges;    // 边集
 
 public:
     // 析构函数
@@ -53,7 +53,7 @@ public:
     vector<int> getVertexes();
 
     // 获取所有边
-    vector<pair<int, int>> getEdges();
+    vector<pair<int, int> > getEdges();
 
     // 获取邻接表数组
     vector<ArrayNode*> getArray();

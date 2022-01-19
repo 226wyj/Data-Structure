@@ -1,5 +1,5 @@
 class SelectionSort:
-    """选择排序，默认按升序排列"""
+    """ 选择排序，默认按升序排列 """
 
     def simpleSelectionSort(self, array):
         for i in range(len(array)):
@@ -14,14 +14,15 @@ class SelectionSort:
         return array
     
     def showResults(self, array):
-        print("----------------------------------------")
         print("Before sorting: ")
         print(array)
         print("After sorting: ")
         print(self.simpleSelectionSort(array))
-        print("----------------------------------------")
+        print()
 
 if __name__ == "__main__":
     array = [1,2, 3, 5, 3, 2, 9, 28, 4, 6]
+    a2 = [4, 2, 1, 6, 3, 5]
     demo = SelectionSort()
     demo.showResults(array)
+    demo.showResults(a2)

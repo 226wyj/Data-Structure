@@ -1,41 +1,34 @@
-import math
-
 class MergeSort:
     """归并排序，这里默认按照升序排列"""
 
     def mergeSort(self, array):
-        arrayLength = len(array)
-        if arrayLength < 2:
+        if len(array) <= 1:
             return array
         # 将序列拆分成两部分
-        middle = math.floor(arrayLength / 2)
-        leftArray = array[:middle]
-        rightArray = array[middle:]
+        mid = len(array) // 2
+        left = self.mergeSort(array[:mid])
+        right = self.mergeSort(array[mid:])
         # 分别对两部分进行排序，然后拼在一起
-        return self.__merge(self.mergeSort(leftArray), 
-                            self.mergeSort(rightArray))
+        return self.merge(left, right)
 
-    def __merge(self, leftArray, rightArray):
+    def merge(self, left, right):
         # 拼接操作
-        mergeResult = []
-        while leftArray and rightArray:
-            if leftArray[0] <= rightArray[0]:
-                mergeResult.append(leftArray.pop(0))
+        res = []
+        while left and right:
+            if left[0] < right[0]:
+                res.append(left.pop(0))
             else:
-                mergeResult.append(rightArray.pop(0))
-        while leftArray:
-            mergeResult.append(leftArray.pop(0))
-        while rightArray:
-            mergeResult.append(rightArray.pop(0))
-        return mergeResult
+                res.append(right.pop(0))
+        res += left
+        res += right
+        return res
     
     def showResults(self, array):
-        print("--------------------------------------")
         print("未排序前的数组: ")
         print(array)
         print("排序后的数组: ")
         print(self.mergeSort(array))
-        print("--------------------------------------")
+        print()
 
 if __name__ == "__main__":
     data1 = [1, 2, 4, 3, 7, 5, 0, 6]

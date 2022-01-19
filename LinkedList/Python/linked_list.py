@@ -53,3 +53,14 @@ class LinkedList:
             pos -= 1
         new_node = Node(num, curr.next)
         curr.next = new_node
+
+    def reverse(self):
+        if not self.head or not self.head.next:
+            return
+        pre, curr = None, self.head
+        while curr:
+            tmp = curr.next
+            curr.next = pre
+            pre = curr
+            curr = tmp
+        self.head = pre
