@@ -13,19 +13,22 @@ class BinarySearchTree:
         self.root = None
     
     # 添加结点
-    def insert(self, root, value):  
-        # TODO: to be done
-        node = Node(value)
-        if not self.root:
-            self.root = node
+    def add_node(self, value):  
+
+        def insert(root, value):
+            node = Node(value)
+            if not root:
+                root = node
+            elif root.value < value:
+                root.right = insert(root.right, value)
+            elif root.value > value:
+                root.left = insert(root.left, value)
+            else:
+                raise ValueError("Value {} has already existed.".format(value))
+            return root
         
-        if value < root.value:
-            root.left 
-            return self.root.left.add(value)
-        elif value > self.root.value:
-            return self.root.right.add(value)
-        else:
-            raise ValueError("Value {} has already existed.".format(value))
+        self.root = insert(self.root, value)
+
 
     # 层序遍历
     def breadth_traverse(self) -> List[int]:
@@ -35,7 +38,7 @@ class BinarySearchTree:
         queue.append(self.root)
         res = []
         while queue:
-            curr = queue.popleft()
+            curr: Node = queue.popleft()
             res.append(curr.value)
             if curr.left:
                 queue.append(curr.left)
@@ -47,12 +50,12 @@ class BinarySearchTree:
     def pre_order_traverse(self) -> List[int]:
         res = []
 
-        def traverse(root):
-            if not self.root:
+        def traverse(root: Node):
+            if not root:
                 return
             res.append(root.value)
-            self.pre_order_traverse(self.root.left)
-            self.pre_order_traverse(self.root.right)
+            traverse(root.left)
+            traverse(root.right)
         
         traverse(self.root)
         return res
@@ -61,12 +64,12 @@ class BinarySearchTree:
     def in_order_traverse(self) -> List[int]:
         res = []
 
-        def traverse(root):
-            if not self.root:
+        def traverse(root: Node):
+            if not root:
                 return
-            self.in_order_traverse(self.root.left)
+            traverse(root.left)
             res.append(root.value)
-            self.in_order_traverse(self.root.right)
+            traverse(root.right)
         
         traverse(self.root)
         return res
@@ -75,11 +78,11 @@ class BinarySearchTree:
     def post_order_traverse(self) -> List[int]:
         res = []
         
-        def traverse(root):
-            if not self.root:
+        def traverse(root: Node):
+            if not root:
                 return
-            self.post_order_traverse(self.root.left)
-            self.post_order_traverse(self.root.right)
+            traverse(root.left)
+            traverse(root.right)
             res.append(root.value)
         
         traverse(self.root)
@@ -90,5 +93,5 @@ if __name__ == "__main__":
     binary_tree = BinarySearchTree()
     nums = [50, 30, 10, 0, 20, 40, 70, 90, 100, 60, 80]
     for i in nums:
-        binary_tree.add(i)
-    binary_tree.in_order_traverse()
+        binary_tree.add_node(i)
+    print(binary_tree.in_order_traverse())
