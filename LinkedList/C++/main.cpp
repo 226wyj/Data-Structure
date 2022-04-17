@@ -1,6 +1,3 @@
-//
-// Created by wyj on 2021/10/8.
-//
 #include <iostream>
 #include "LinkedList.h"
 
