@@ -1,47 +1,59 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
-struct Node {
-    int data;
-    Node* next;
-};
+#include "Node.h"
 
 // 链表定义
 class LinkedList {
 private:
-    // 头结点，指向链表中的第一个数据结点
     Node* head;
+    Node* tail;
+    int length;
+
+    void deleteNode(Node* node) {
+        node->setNext(nullptr);
+        delete node;
+    }
 
 public:
-    // 构造函数
+    // Constructor.
     LinkedList();
 
-    // 获取头结点
+    // Destructor.
+    ~LinkedList();
+
+    // Gets head node of the linked list.
     Node* getHead();
 
-    // 获取链表长度
+    // Gets tail node of the linked list.
+    Node* getTail();
+
+    // Gets length of the linked list.
     int getLength();
 
-    // 在链表末尾追加数据（尾插法）
-    void appendData(int data);
+    // Appends data at the beginning of the linked list.
+    void appendFront(int data);
 
-    // 删除链表中值为value的结点，成功返回1，否则返回0
-    int deleteData(int data);
+    // Appends data at the end of the linked list.
+    void appendBack(int data);
+
+    // Removes target node based on the given data value.
+    int remove(int data);
 
     // 在链表特定位置中插入数据，index从0开始，插入的数据作为链表中的第index个结点
-    bool insertData(int index, int data);
+    void insert(int pos, int data);
 
     // 获取链表中某一位置的数据，index从0开始
-    int getData(int index);
+    Node* getNode(int index);
 
-    // 反转链表
-    Node* reverseList();
+    // Reverses the linked list.
+    void reverse();
 
     // 清空链表
-    void clearList();
+    void clear();
 
     // 输出链表中的内容
-    void showList();
+    void printList();
 };
 
 

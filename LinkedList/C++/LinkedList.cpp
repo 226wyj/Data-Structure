@@ -1,167 +1,181 @@
 #include <iostream>
 #include "LinkedList.h"
 
+
 using std::cout;
 using std::endl;
 
-LinkedList::LinkedList() {
-    head = nullptr;
+
+LinkedList::LinkedList(): head(nullptr), tail(nullptr), length(0) {}
+
+
+LinkedList::~LinkedList() {
+    Node* curr = head;
+    while (curr) {
+        Node* tmp = curr;
+        curr = curr->getNext();
+        tmp->setNext(nullptr);
+        delete tmp;
+    }
+    delete this;
 }
+
 
 Node* LinkedList::getHead() {
     return this->head;
 }
 
-// 获取链表长度
-int LinkedList::getLength() {
-    Node* currentPointer = this->head;
-    int length = 0;
-    while (currentPointer != nullptr) {
-        currentPointer = currentPointer->next;
-        length++;
-    }
-    return length;
+
+Node* LinkedList::getTail() {
+    return this->tail;
 }
 
-// 在链表末尾追加数据（尾插法）
-void LinkedList::appendData(int data) {
-    // 生成新的结点
-    Node* newNode = new(Node);
-    newNode->data = data;
-    newNode->next = nullptr;
 
+int LinkedList::getLength() {
+    return this->length;
+}
+
+
+void LinkedList::appendFront(int data) {
     if (!head) {
+        head = new Node(data);
+        tail = head;
+    } else {
+        Node* newNode = new Node(data, head);
         head = newNode;
     }
-    else {
-        Node* currentPointer = head;
-        while (currentPointer->next != nullptr) {
-            currentPointer = currentPointer->next;
-        }
-        currentPointer->next = newNode;
-    }
+    length++;
 }
 
-// 删除链表中值为value的结点，成功返回1，否则返回0
-int LinkedList::deleteData(int data) {
-    Node* currentPointer = this->head;
-    Node* prePointer = nullptr;
-    int flag = 0;
-    while (currentPointer != nullptr) {
-        // 找到data，将其删除
-        if (currentPointer->data == data) {
-            if (currentPointer == this->head)
-                head = head->next;
-            else {
-                if (prePointer == head)
-                    prePointer = currentPointer->next;
-                else
-                    prePointer->next = currentPointer->next;
+
+void LinkedList::appendBack(int data) {
+    if (!head) {
+        head = new Node(data);
+        tail = head;
+    } else {
+        tail->setNext(new Node(data));
+        tail = tail->getNext();
+    }
+    length++;
+}
+
+
+int LinkedList::remove(int data) {
+    if (length == 0) {
+        cout << "You can not remove anything from an empty linked list." << endl;
+        return 0;
+    }
+    Node* curr = this->head;
+    Node* pre = nullptr;
+    while (curr) {
+        if (curr->getData() == data) {
+            // updates the head and tail pointers if necessary.
+            if (curr == this->head) {
+                head = curr->getNext();                
             }
-            flag = 1;
-            break;
-        }
-        // 未找到data，则继续遍历
-        else {
-            prePointer = currentPointer;
-            currentPointer = currentPointer->next;
-        }
-    }
-    return flag;
-}
-
-// 在链表特定位置中插入数据，index从0开始，插入的数据作为链表中的第index个结点
-bool LinkedList::insertData(int index, int data) {
-    if (index < 0 || index > this->getLength()) {
-        cout << "Index Out of Range Error!" << endl;
-        return false;
-    }
-    else {
-        // 生成新的数据结点
-        Node* newNode = new(Node);
-        newNode->data = data;
-        newNode->next = nullptr;
-        // 找到待插入的位置
-        if (index == 0) {
-            Node* temp = head;
-            head = newNode;
-            newNode->next = temp;
-        }
-        else {
-            Node* currentPointer = this->head;
-            for (int i = 0; i < index - 1; i++) {
-                currentPointer = currentPointer->next;
+            if (curr == this->tail) {
+                tail = pre;
             }
-            Node* temp = currentPointer->next;
-            currentPointer->next = newNode;
-            newNode->next = temp;
-        }
-    }
-    return true;
-}
 
-
-// 获取链表中某一位置的数据，index从0开始
-int LinkedList::getData(int index) {
-    int result = 0;
-    if (index < 0 || index > this->getLength() - 1) {
-        cout << "Index Out of Range Error!";
-        return -1;
-    }
-    else {
-        if (index == 0)
-            result = head->data;
-        else {
-            Node* currentPointer = this->head;
-            for (int i = 0; i < index; i++) {
-                currentPointer = currentPointer->next;
+            // removes the target node.
+            if (pre) {
+                pre->setNext(curr->getNext());
+                this->deleteNode(curr);
             }
-            result = currentPointer->data;
+            return 1;
+        } else {
+            pre = curr;
+            curr = curr->getNext();
         }
     }
-    return result;
+    return 0;
 }
 
-// 反转链表
-Node* LinkedList::reverseList() {
-    Node* newHead = nullptr;
-    for (int i = 0; i < this->getLength(); i++) {
-        // 取原始链表中的数据，构造新结点
-        Node* newNode = new(Node);
-        newNode->data = this->getData(i);
-        newNode->next = nullptr;
 
-        // 头插法构造新链表，从而实现原始列表的反转
-        if (!newHead) {
-            newHead = newNode;
-        }
-        else {
-            newNode->next = newHead;
-            newHead = newNode;
-        }
+void LinkedList::insert(int pos, int data) {
+    if (pos < 0 || pos > getLength()) {
+        cout << "The length of the list is " << length << ", your pos is " << pos << endl;
+        cout << "The range of the pos parameter should be within [0, length]." << endl;
+        return;
     }
-    return newHead;
+    // Uses a dummy_head node for assistance,
+    // so that we do not need to care about the corner case.
+    Node* dummy_head = new Node(0, head);
+
+    // Finds the target position.
+    Node* curr = dummy_head;
+    for (int i = pos; i > 0; i--) {
+        curr = curr->getNext();
+    }
+
+    // Inserts the new node.
+    Node* newNode = new Node(data, curr->getNext());
+    curr->setNext(newNode);
+
+    // Adjust the head and tail pointers if necessary.
+    if (pos == 0) {
+        head = newNode;
+    }
+    if (pos == getLength()) {
+        tail = newNode;
+    }
+
+    length++;
+    deleteNode(dummy_head);
 }
 
-// 清空链表
-void LinkedList::clearList() {
-    Node* current = this->head;
-    while (current) {
-        auto temp = current;
-        current = current->next;
-        delete temp;
+
+Node* LinkedList::getNode(int index) {
+    if (index < 0 || index >= getLength()) {
+        cout << "The length of the list is " << length << ", your index is " << index << endl;
+        cout << "The range of the pos parameter should be within [0, length - 1]" << endl;
+        return nullptr;
     }
-    this->head = nullptr;
+    Node* curr = head;
+    for (int i = 0; i < index; i++) {
+        curr = curr->getNext();
+    }
+    return curr;
 }
 
-// 输出链表中的内容
-void LinkedList::showList() {
-    cout << "[ ";
-    Node* pre = head;
-    while (pre != nullptr) {
-        cout << pre->data << ' ';
-        pre = pre->next;
+
+void LinkedList::reverse() {
+    if (!head || !head->getNext()) {
+        return;
     }
-    cout << "]" << endl;
+
+    Node* pre = nullptr;
+    Node* curr = head;
+    tail = head;
+    while (curr) {
+        Node* tmp = curr->getNext();
+        curr->setNext(pre);
+        pre = curr;
+        curr = tmp;
+    }
+    head = pre;
+}
+
+
+void LinkedList::clear() {
+    Node* curr = head;
+    while (curr) {
+        Node* tmp = curr;
+        curr = curr->getNext();
+        tmp->setNext(nullptr);
+        delete tmp;
+    }
+    head = nullptr;
+    tail = nullptr;
+    length = 0;
+}
+
+
+void LinkedList::printList() {
+    Node* curr = head;
+    while (curr->getNext()) {
+        cout << curr->getData() << " -> ";
+    }
+    cout << curr->getData() << endl;
 }
 
