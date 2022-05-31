@@ -1,8 +1,10 @@
 from typing import List
 from random import randint
 
+from pyparsing import nums
 
-def count_sort(arr: List[int]) -> None:
+
+def count_sort(arr: List[int]) -> List[int]:
     # 根据数组中的最大值和最小值确定另开辟数组的空间大小
     max_num = max(arr)
     min_num = min(arr) 
@@ -20,6 +22,7 @@ def count_sort(arr: List[int]) -> None:
             arr[index] = idx + min_num
             cnt -= 1
             index += 1
+    return nums
 
 
 if __name__ == '__main__':
@@ -27,5 +30,4 @@ if __name__ == '__main__':
     for i in range(10):
         arr.append(randint(1, 10))
     print(arr)
-    count_sort(arr)
-    print(arr)
+    print(count_sort(arr))
